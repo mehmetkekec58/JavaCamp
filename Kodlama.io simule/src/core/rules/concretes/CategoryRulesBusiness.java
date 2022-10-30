@@ -7,6 +7,8 @@ import dataAccess.abstracts.CategoryDao;
 import entities.concretes.Category;
 import entities.concretes.Course;
 
+import java.util.Locale;
+
 public class CategoryRulesBusiness implements CategoryRules {
 
     private CategoryDao categoryDao;

@@ -33,7 +33,6 @@ public class CourseManager implements CourseService {
         this.courseDao.add(course);
         this.log("Kurs veritabanına eklendi: " + course.getName());
 
-
     }
 
     @Override
@@ -64,8 +63,11 @@ public class CourseManager implements CourseService {
     }
 
     @Override
-    public List<Course> getAllByName(String name) {
-        return this.courseDao.getAll(c -> c.getName().equals(name));
+    public Course getByName(String name) throws Exception {
+        Course course = this.courseDao.get(c -> c.getName().equals(name));
+        if (course == null)
+            throw new Exception(CourseManagerMessages.COURSE_NOT_FOUND);
+        return course;
     }
 
     private void log(String data) {

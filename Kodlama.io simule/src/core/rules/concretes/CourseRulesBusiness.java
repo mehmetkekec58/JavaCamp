@@ -6,9 +6,11 @@ import core.rules.concretes.constants.CourseRulesMessages;
 import dataAccess.abstracts.CourseDao;
 import entities.concretes.Course;
 
-public class CourseRulesBussiness implements CourseRules {
+import java.util.Locale;
+
+public class CourseRulesBusiness implements CourseRules {
     private CourseDao courseDao;
-    public CourseRulesBussiness(CourseDao courseDao) {
+    public CourseRulesBusiness(CourseDao courseDao) {
         this.courseDao = courseDao;
     }
 

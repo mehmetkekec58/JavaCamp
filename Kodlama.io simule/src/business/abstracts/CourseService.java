@@ -17,5 +17,5 @@ public interface CourseService {
 
     Course getById(int id) throws Exception;
 
-    List<Course> getAllByName(String name);
+    Course getByName(String name) throws Exception;
 }
