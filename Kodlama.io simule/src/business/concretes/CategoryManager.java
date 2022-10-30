@@ -1,6 +1,7 @@
 package business.concretes;
 
 import business.abstracts.CategoryService;
+import business.concretes.constans.CategoryManagerMessages;
 import core.exceptions.BusinessRulesException;
 import core.rules.abstracts.CategoryRules;
 import dataAccess.abstracts.CategoryDao;
@@ -20,13 +21,13 @@ public class CategoryManager implements CategoryService {
 
     @Override
     public void add(Category category) throws BusinessRulesException {
-        this.categoryRules.categoryAlreadyExists(category.getName());
+        this.addBusinessCheck(category);
         this.categoryDao.add(category);
     }
 
     @Override
     public void update(Category category) throws BusinessRulesException {
-        this.categoryRules.categoryAlreadyExists(category.getName());
+        this.updateBusinessCheck(category);
         this.categoryDao.update(category);
     }
 
@@ -41,12 +42,26 @@ public class CategoryManager implements CategoryService {
     }
 
     @Override
-    public Category getById(int id) {
-        return this.categoryDao.get(c -> c.getId() == id);
+    public Category getById(int id) throws Exception {
+       Category category = this.categoryDao.get(c -> c.getId() == id);
+       if (category == null)
+           throw new Exception(CategoryManagerMessages.CATEGORY_NOT_FOUND);
+
+       return category;
     }
 
     @Override
     public List<Category> getAllByName(String name) {
         return this.categoryDao.getAll(c -> c.getName().equals(name));
+    }
+
+    private void addBusinessCheck(Category category) throws BusinessRulesException {
+        this.categoryRules.categoryCannotBeNull(category);
+        this.categoryRules.categoryAlreadyExists(category.getName());
+    }
+
+    private void updateBusinessCheck(Category category) throws BusinessRulesException {
+        this.categoryRules.categoryCannotBeNull(category);
+        this.categoryRules.categoryAlreadyExists(category.getName());
     }
 }

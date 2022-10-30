@@ -20,9 +20,8 @@ public class CourseRulesBussiness implements CourseRules {
     }
 
     @Override
-    public void thePriceOfTheCourseCannotBeLessThanZero(double price) throws BusinessRulesException {
-        if (price<0){
-        throw new BusinessRulesException(CourseRulesMessages.THE_PRICE_OF_THE_COURSE_CANNOT_BE_LESS_THAN_ZERO);
-       }
+    public void courseCannotBeNull(Course course) throws BusinessRulesException {
+        if(course == null)
+            throw  new BusinessRulesException(CourseRulesMessages.COURSE_CANNOT_BE_NULL);
     }
 }

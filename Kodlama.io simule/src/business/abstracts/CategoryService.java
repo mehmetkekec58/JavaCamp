@@ -8,9 +8,14 @@ import java.util.List;
 
 public interface CategoryService {
     void add(Category category) throws BusinessRulesException;
+
     void update(Category category) throws BusinessRulesException;
+
     void delete(Category category);
+
     List<Category> getAll();
-    Category getById(int id) throws BusinessRulesException;
+
+    Category getById(int id) throws Exception;
+
     List<Category> getAllByName(String name);
 }

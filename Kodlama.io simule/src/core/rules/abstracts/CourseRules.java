@@ -6,5 +6,6 @@ import entities.concretes.Course;
 
 public interface CourseRules {
     void courseAlreadyExists(String name) throws BusinessRulesException;
-    void thePriceOfTheCourseCannotBeLessThanZero(double price) throws BusinessRulesException;
+
+    void courseCannotBeNull(Course course) throws BusinessRulesException;
 }
